@@ -1,0 +1,101 @@
+{
+  "categories": [
+    {
+      "name": "runtime",
+      "label": "런타임",
+      "repos": [
+        { "name": "OpenClaude", "url": "https://github.com/Gitlawb/openclaude" },
+        { "name": "OpenClaw", "url": "https://github.com/openclaw/openclaw" },
+        { "name": "Goose", "url": "https://github.com/aaif-goose/goose" },
+        { "name": "Claw Code", "url": "https://github.com/ultraworkers/claw-code" },
+        { "name": "Hermes Agent", "url": "https://github.com/NousResearch/hermes-agent" }
+      ]
+    },
+    {
+      "name": "knowledge-pack",
+      "label": "범용 지식팩",
+      "repos": [
+        { "name": "ECC", "url": "https://github.com/affaan-m/everything-claude-code" },
+        { "name": "Superpowers", "url": "https://github.com/obra/superpowers" },
+        { "name": "gstack", "url": "https://github.com/garrytan/gstack" }
+      ]
+    },
+    {
+      "name": "orchestration",
+      "label": "오케스트레이션/하네스",
+      "repos": [
+        { "name": "oh-my-claudecode", "url": "https://github.com/Yeachan-Heo/oh-my-claudecode" },
+        { "name": "OpenHarness", "url": "https://github.com/HKUDS/OpenHarness" },
+        { "name": "AutoHarness", "url": "https://github.com/aiming-lab/AutoHarness" },
+        { "name": "multica", "url": "https://github.com/multica-ai/multica" }
+      ]
+    },
+    {
+      "name": "autonomous-loop",
+      "label": "자율 루프",
+      "repos": [
+        { "name": "Ralph", "url": "https://github.com/snarktank/ralph" },
+        { "name": "autoresearch", "url": "https://github.com/karpathy/autoresearch" }
+      ]
+    },
+    {
+      "name": "cross-agent",
+      "label": "크로스 에이전트",
+      "repos": [
+        { "name": "Codex", "url": "https://github.com/openai/codex" },
+        { "name": "openclaw-claude-code", "url": "https://github.com/Enderfga/openclaw-claude-code" }
+      ]
+    },
+    {
+      "name": "dev-tools",
+      "label": "개발자 도구/프록시",
+      "repos": [
+        { "name": "RTK", "url": "https://github.com/rtk-ai/rtk" },
+        { "name": "graphify", "url": "https://github.com/safishamsi/graphify" },
+        { "name": "vibeproxy", "url": "https://github.com/automazeio/vibeproxy" }
+      ]
+    },
+    {
+      "name": "ai-research",
+      "label": "AI 리서치/자기개선",
+      "repos": [
+        { "name": "HyperAgents", "url": "https://github.com/facebookresearch/HyperAgents" },
+        { "name": "hermes-self-evolution", "url": "https://github.com/NousResearch/hermes-agent-self-evolution" }
+      ]
+    },
+    {
+      "name": "design",
+      "label": "도메인: 디자인",
+      "repos": [
+        { "name": "impeccable", "url": "https://github.com/pbakaus/impeccable" },
+        { "name": "awesome-design-md", "url": "https://github.com/VoltAgent/awesome-design-md" }
+      ]
+    },
+    {
+      "name": "seo",
+      "label": "도메인: SEO/마케팅",
+      "repos": [
+        { "name": "seomachine", "url": "https://github.com/TheCraigHewitt/seomachine" }
+      ]
+    },
+    {
+      "name": "finance",
+      "label": "도메인: 금융",
+      "repos": [
+        { "name": "claude-trading-skills (agiprolabs)", "url": "https://github.com/agiprolabs/claude-trading-skills" },
+        { "name": "claude-trading-skills (tradermonty)", "url": "https://github.com/tradermonty/claude-trading-skills" },
+        { "name": "financial-services-plugins", "url": "https://github.com/anthropics/financial-services-plugins" },
+        { "name": "lightweight-charts", "url": "https://github.com/tradingview/lightweight-charts" },
+        { "name": "ccxt", "url": "https://github.com/ccxt/ccxt" }
+      ]
+    },
+    {
+      "name": "skills",
+      "label": "스킬 카탈로그",
+      "repos": [
+        { "name": "awesome-openclaw-skills", "url": "https://github.com/VoltAgent/awesome-openclaw-skills" },
+        { "name": "awesome-claude-skills", "url": "https://github.com/travisvn/awesome-claude-skills" }
+      ]
+    }
+  ]
+}

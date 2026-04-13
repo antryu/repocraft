@@ -1,0 +1,16 @@
+{
+  "name": "repocraft",
+  "version": "1.0.0",
+  "description": "🔧 LLM-powered repo feature analysis, comparison & synthesis",
+  "main": "src/cli.js",
+  "bin": {
+    "repocraft": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js"
+  },
+  "keywords": ["github", "repo", "feature", "analysis", "comparison", "llm", "claude", "synthesis"],
+  "author": "antryu",
+  "license": "MIT",
+  "dependencies": {}
+}

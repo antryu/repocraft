@@ -1,0 +1,9 @@
+node_modules/
+.omc/
+tmp/
+*.log
+repocraft-output.html
+repocraft-dashboard.html
+repocraft-compare.html
+repocraft-craft.html
+.env
