@@ -26,7 +26,7 @@ function maturityGradient(m) {
 const SHARED_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #08081a; color: #e8e8f0; min-height: 100vh; overflow-x: hidden; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #08081a; color: #e8e8f0; min-height: 100vh; overflow-x: hidden; font-size: 16px; }
 
   /* Animated gradient background */
   body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.06) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(16,185,129,0.05) 0%, transparent 50%); pointer-events: none; z-index: -1; }
@@ -42,8 +42,8 @@ const SHARED_CSS = `
 
   /* Header */
   .header { padding: 48px 48px 24px; }
-  .header h1 { font-size: 36px; font-weight: 900; letter-spacing: -1.5px; background: linear-gradient(135deg, #8b5cf6, #06b6d4, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
-  .header .subtitle { font-size: 15px; color: #555; margin-top: 6px; font-weight: 400; }
+  .header h1 { font-size: 48px; font-weight: 900; letter-spacing: -2px; background: linear-gradient(135deg, #8b5cf6, #06b6d4, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+  .header .subtitle { font-size: 18px; color: #555; margin-top: 6px; font-weight: 400; }
   .badges { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
   .badge { padding: 5px 14px; border-radius: 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; }
   .badge-primary { background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(6,182,212,0.15)); border: 1px solid rgba(139,92,246,0.3); color: #a78bfa; }
@@ -79,37 +79,49 @@ function generateFeatureMap(result) {
   .feature-box { padding: 20px 22px; border-radius: 14px; cursor: default; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden; }
   .feature-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 14px 14px 0 0; }
   .feature-box:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
-  .feature-box .name { font-size: 15px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.3px; }
-  .feature-box .desc { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .feature-box .meta { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #555; }
-  .feature-box .maturity-track { height: 3px; background: rgba(255,255,255,0.05); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+  .feature-box .name { font-size: 18px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.3px; }
+  .feature-box .desc { font-size: 14px; color: #777; line-height: 1.6; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .feature-box .meta { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #555; }
+  .feature-box .maturity-track { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; margin-top: 12px; overflow: hidden; }
   .feature-box .maturity-fill { height: 100%; border-radius: 2px; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); }
-  .feature-box .score { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+  .feature-box .score { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
 </style></head><body>
 
 <div class="header">
   <h1>repocraft</h1>
   <div class="subtitle">${result.repo}</div>
   <div class="badges">
-    <span class="badge badge-primary">${result.features.length} features extracted</span>
-    <span class="badge badge-stat">${result.totalFiles.toLocaleString()} files</span>
-    <span class="badge badge-stat">${result.totalLoc.toLocaleString()} LOC</span>
+    <span class="badge badge-primary">${result.features.length}개 기능 추출</span>
+    <span class="badge badge-stat">${result.totalFiles.toLocaleString()} 파일</span>
+    <span class="badge badge-stat">${result.totalLoc.toLocaleString()} 줄</span>
   </div>
 </div>
 
+<div style="padding:0 48px 24px">
+  <div class="glass" style="padding:20px 28px;display:flex;gap:32px;flex-wrap:wrap;align-items:center">
+    <div style="font-size:14px;color:#888;font-weight:600">읽는 법</div>
+    <div style="display:flex;align-items:center;gap:8px"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#00d2ff"></span><span style="font-size:14px;color:#aaa">8~10 완성도 높음</span></div>
+    <div style="display:flex;align-items:center;gap:8px"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#a8e063"></span><span style="font-size:14px;color:#aaa">6~7 양호</span></div>
+    <div style="display:flex;align-items:center;gap:8px"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#f7971e"></span><span style="font-size:14px;color:#aaa">4~5 미완성</span></div>
+    <div style="display:flex;align-items:center;gap:8px"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#ff416c"></span><span style="font-size:14px;color:#aaa">1~3 실험적</span></div>
+    <div style="font-size:13px;color:#555;margin-left:auto">박스 크기 = 코드량 | 숫자 = 완성도 점수 (10점 만점)</div>
+  </div>
+</div>
+
+<div style="padding:0 48px 8px"><h2 style="font-size:20px;font-weight:800;color:#bbb;letter-spacing:-0.5px">기능 목록</h2><p style="font-size:14px;color:#555;margin-top:4px">이 레포에서 추출한 기능 블록들입니다. 각 카드가 하나의 기능이에요.</p></div>
 <div class="feature-grid" id="featureGrid"></div>
 
 <div class="dashboard">
   <div class="panel glass panel-wide">
-    <h2>Feature Landscape</h2>
+    <h2>기능 지도 — 박스가 클수록 코드가 많은 기능</h2>
     <div id="treemap" class="chart" style="height:480px"></div>
   </div>
   <div class="panel glass">
-    <h2>Maturity Spectrum</h2>
+    <h2>완성도 분포 — 기능들이 얼마나 완성됐는지</h2>
     <div id="maturity" class="chart" style="height:360px"></div>
   </div>
   <div class="panel glass">
-    <h2>Category Composition</h2>
+    <h2>카테고리 비율 — 어떤 종류의 기능이 많은지</h2>
     <div id="category" class="chart" style="height:360px"></div>
   </div>
 </div>
@@ -120,6 +132,8 @@ const catColors = ${JSON.stringify(CATEGORY_COLORS)};
 
 function mColor(m) { return m >= 8 ? '#00d2ff' : m >= 6 ? '#a8e063' : m >= 4 ? '#f7971e' : '#ff416c'; }
 function mGrad(m) { return m >= 8 ? 'linear-gradient(135deg,#00d2ff,#3a7bd5)' : m >= 6 ? 'linear-gradient(135deg,#a8e063,#56ab2f)' : m >= 4 ? 'linear-gradient(135deg,#f7971e,#ffd200)' : 'linear-gradient(135deg,#ff416c,#ff4b2b)'; }
+const catKo = { auth:'인증', messaging:'메시징', api:'API', ui:'UI', storage:'저장소', 'ai-model':'AI모델', 'tool-execution':'도구실행', memory:'메모리', scheduling:'스케줄링', deployment:'배포', testing:'테스트', docs:'문서', config:'설정', 'plugin-system':'플러그인', monitoring:'모니터링', search:'검색', media:'미디어', other:'기타' };
+function mLabel(m) { return m >= 8 ? '완성' : m >= 6 ? '양호' : m >= 4 ? '미완' : '실험'; }
 
 // Feature boxes with staggered animation
 const grid = document.getElementById('featureGrid');
@@ -129,15 +143,19 @@ data.features.sort((a,b) => b.loc_estimate - a.loc_estimate).forEach((f, i) => {
   el.style.animationDelay = (i * 0.05) + 's';
   const c = mColor(f.maturity);
   el.style.setProperty('--accent', c);
-  el.innerHTML = \`<div style="position:absolute;top:0;left:0;right:0;height:3px;background:\${mGrad(f.maturity)}"></div>
+  el.innerHTML = \`<div style="position:absolute;top:0;left:0;right:0;height:4px;background:\${mGrad(f.maturity)}"></div>
     <div style="display:flex;justify-content:space-between;align-items:flex-start">
-      <div class="name">\${f.name}</div>
-      <div class="score" style="color:\${c}">\${f.maturity}</div>
+      <div>
+        <div class="name">\${f.name_ko || f.name}</div>
+        <div style="font-size:12px;color:#444;margin-top:1px">\${f.name}</div>
+      </div>
+      <div class="score" style="color:\${c}">\${f.maturity}<span style="font-size:12px;opacity:0.5">/10</span></div>
     </div>
-    <div class="desc">\${f.description}</div>
+    <div class="desc">\${f.description_ko || f.description}</div>
     <div class="meta">
-      <span style="background:\${(catColors[f.category]||'#555')}22;color:\${catColors[f.category]||'#888'};padding:2px 8px;border-radius:8px;font-size:10px">\${f.category}</span>
-      <span>\${(f.loc_estimate||0).toLocaleString()} LOC</span>
+      <span style="background:\${(catColors[f.category]||'#555')}22;color:\${catColors[f.category]||'#888'};padding:3px 10px;border-radius:8px;font-size:12px">\${catKo[f.category]||f.category}</span>
+      <span style="color:\${c};font-weight:600">\${mLabel(f.maturity)}</span>
+      <span>\${(f.loc_estimate||0).toLocaleString()}줄</span>
     </div>
     <div class="maturity-track"><div class="maturity-fill" style="width:\${f.maturity*10}%;background:\${mGrad(f.maturity)}"></div></div>\`;
   grid.appendChild(el);
@@ -150,16 +168,16 @@ const echartTheme = { backgroundColor: 'transparent' };
 const treemap = echarts.init(document.getElementById('treemap'));
 treemap.setOption({
   tooltip: { backgroundColor: 'rgba(17,17,40,0.95)', borderColor: 'rgba(255,255,255,0.1)', textStyle: { color: '#ddd', fontSize: 13 },
-    formatter: p => '<b style="font-size:15px">' + p.name + '</b><br/><span style="color:#888">Maturity:</span> <b style="color:'+mColor(p.data.maturity)+'">' + p.data.maturity + '/10</b><br/><span style="color:#888">LOC:</span> ' + (p.value||0).toLocaleString() + '<br/><span style="color:#888">Category:</span> ' + (p.data.cat||'') },
+    formatter: p => '<b style="font-size:16px">' + (p.data.name_ko||p.name) + '</b><br/><span style="color:#666;font-size:12px">' + p.name + '</span><br/><br/><span style="color:#888">완성도:</span> <b style="color:'+mColor(p.data.maturity)+'">' + p.data.maturity + '/10 (' + mLabel(p.data.maturity) + ')</b><br/><span style="color:#888">코드량:</span> ' + (p.value||0).toLocaleString() + '줄<br/><span style="color:#888">분류:</span> ' + (catKo[p.data.cat]||p.data.cat||'') + '<br/><br/><span style="color:#aaa;font-size:12px;line-height:1.5">' + (p.data.desc_ko||'') + '</span>' },
   series: [{
     type: 'treemap', roam: false, nodeClick: false, width: '100%', height: '100%',
     breadcrumb: { show: false },
     label: { show: true, fontSize: 13, color: '#fff', fontWeight: 600, fontFamily: 'Inter', formatter: '{b}' },
     itemStyle: { borderColor: '#08081a', borderWidth: 3, gapWidth: 3 },
     data: data.features.map(f => ({
-      name: f.name, value: f.loc_estimate || 100, maturity: f.maturity, cat: f.category,
+      name: f.name, name_ko: f.name_ko, desc_ko: f.description_ko, value: f.loc_estimate || 100, maturity: f.maturity, cat: f.category,
       itemStyle: { color: mColor(f.maturity), borderRadius: 4 },
-      label: { fontSize: Math.max(11, Math.min(18, Math.round(Math.sqrt(f.loc_estimate||100) / 8))) }
+      label: { fontSize: Math.max(12, Math.min(20, Math.round(Math.sqrt(f.loc_estimate||100) / 7))), formatter: function(p) { return p.data.name_ko || p.name; } }
     }))
   }]
 });

@@ -6,7 +6,7 @@ function callClaude(systemPrompt, userMessage, retries = 2) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       model: 'claude-sonnet-4-20250514',
-      max_tokens: 4096,
+      max_tokens: 8192,
       system: systemPrompt,
       messages: [{ role: 'user', content: userMessage }],
     });
@@ -59,8 +59,10 @@ function callClaude(systemPrompt, userMessage, retries = 2) {
 const SYSTEM_PROMPT = `You are a software architecture analyst. You analyze GitHub repositories and extract their functional feature blocks.
 
 For each feature, evaluate:
-- name: short feature name (e.g., "Discord Integration", "OAuth Authentication")
-- description: one-line description of what it does
+- name: short feature name in English (e.g., "Discord Integration", "OAuth Authentication")
+- name_ko: Korean name for the feature (e.g., "디스코드 연동", "OAuth 인증")
+- description: one-line English description
+- description_ko: Korean explanation (2-3 sentences). Explain what this feature does, why it matters, and how complete it is. Write for a non-developer audience.
 - maturity: score 1-10 (1-3: experimental/stub, 4-6: functional but incomplete, 7-9: production-ready, 10: battle-tested)
 - category: one of [auth, messaging, api, ui, storage, ai-model, tool-execution, memory, scheduling, deployment, testing, docs, config, plugin-system, monitoring, search, media, other]
 - loc_estimate: rough LOC for this feature
@@ -69,6 +71,7 @@ For each feature, evaluate:
 IMPORTANT:
 - Extract 5-20 features per repo (not too granular, not too coarse)
 - Score maturity honestly based on code evidence
+- description_ko must be helpful and specific, not generic. Explain the actual implementation.
 - Return ONLY valid JSON array, no markdown, no explanation`;
 
 async function extractFeatures(repoData) {
@@ -111,12 +114,25 @@ Return a JSON array of feature objects. Only JSON, no markdown fences.`;
     jsonStr = jsonStr.replace(/^```json?\n?/, '').replace(/\n?```$/, '');
   }
 
+  // Attempt to fix truncated JSON
+  if (!jsonStr.endsWith(']')) {
+    const lastComplete = jsonStr.lastIndexOf('},');
+    if (lastComplete > 0) {
+      jsonStr = jsonStr.slice(0, lastComplete + 1) + ']';
+    } else if (jsonStr.includes('{')) {
+      const lastObj = jsonStr.lastIndexOf('}');
+      if (lastObj > 0) jsonStr = jsonStr.slice(0, lastObj + 1) + ']';
+    }
+  }
+
   try {
     const features = JSON.parse(jsonStr);
     if (!Array.isArray(features)) throw new Error('Expected array');
     return features.map(f => ({
       name: f.name || 'Unknown',
+      name_ko: f.name_ko || f.name || 'Unknown',
       description: f.description || '',
+      description_ko: f.description_ko || f.description || '',
       maturity: Math.min(10, Math.max(1, Number(f.maturity) || 5)),
       category: f.category || 'other',
       loc_estimate: Number(f.loc_estimate) || 0,
